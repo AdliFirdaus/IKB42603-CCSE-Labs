@@ -50,7 +50,7 @@ aws $EP sts get-caller-identity
 
 The response confirmed the session was operating as the **root** identity (`Account: 000000000000`, `Arn: arn:aws:iam::000000000000:root`), establishing the baseline before least-privilege identities were introduced.
 
-![Root identity via sts get-caller-identity](<Screenshot 2026-07-29 193013.png>)
+![Root identity via sts get-caller-identity](Evidence-Lab1/Screenshot%2026-07-29%203808.png)
 
 ```bash
 # Create a group and attach the AdministratorAccess policy to the GROUP, not the user
@@ -112,7 +112,7 @@ aws $EP iam list-access-keys --user-name Analyst_Adli
 
 The listing confirmed the key `LKIAQAAAAAAADSFBHWHR` in `Active` status.
 
-![Access key listed as Active](<Screenshot_2026-07-29_193659.png>)
+![Access key listed as Active](Evidence-Lab1/Screenshot%202026-07-29%20193659.png)
 
 ```bash
 # Rotate: deactivate the key rather than deleting it outright
@@ -125,7 +125,7 @@ aws $EP iam list-access-keys --user-name Analyst_Adli
 
 The follow-up listing confirmed the same key's status had changed from `Active` to `Inactive`, demonstrating that a key can be immediately revoked without deleting the identity itself - the standard first response to a suspected key leak, since it stops the key from authenticating while preserving an audit trail.
 
-![Access key rotated to Inactive](<Screenshot_2026-07-29_193709.png>)
+![Access key rotated to Inactive](Evidence-Lab1/Screenshot%202026-07-29%20193709.png)
 
 *End of Session A.*
 
@@ -143,7 +143,7 @@ kind create cluster --name ccse-lab1
 
 Cluster provisioning completed successfully, with each stage (node image, control-plane startup, CNI installation, StorageClass installation) reported as successful, and the `kubectl` context automatically set to `kind-ccse-lab1`.
 
-![kind cluster ccse-lab1 created](<Screenshot_2026-07-29_193309.png>)
+![kind cluster ccse-lab1 created](Evidence-Lab1/Screenshot%202026-07-29%20193309.png)
 
 ```bash
 kubectl cluster-info --context kind-ccse-lab1
@@ -152,7 +152,7 @@ kubectl get nodes
 
 The control plane and CoreDNS were confirmed reachable at `127.0.0.1`, and the single node `ccse-lab1-control-plane` was confirmed in the **Ready** state, running Kubernetes `v1.30.0`.
 
-![Cluster info and node Ready state confirmed](<Screenshot_2026-07-29_193249.png>)
+![Cluster info and node Ready state confirmed](Evidence-Lab1/Screenshot%202026-07-29%20193249.png)
 
 ### Task 5 - Separate Environments with Namespaces
 
@@ -166,7 +166,7 @@ kubectl get namespaces
 
 Both `dev` and `prod` namespaces were confirmed as `Active`, alongside the cluster's default system namespaces.
 
-![dev and prod namespaces created](<Screenshot_2026-07-29_193347.png>)
+![dev and prod namespaces created](Evidence-Lab1/Screenshot%202026-07-29%20193347.png)
 
 ### Task 6 - Define a Role and Bind It (Least Privilege)
 
@@ -187,7 +187,7 @@ kubectl create rolebinding dev-user-binding -n dev \
 
 All three objects - the ServiceAccount, the Role, and the RoleBinding - were confirmed created successfully.
 
-![ServiceAccount, Role, and RoleBinding created](<Screenshot_2026-07-29_193451.png>)
+![ServiceAccount, Role, and RoleBinding created](Evidence-Lab1/Screenshot%202026-07-29%20193451.png)
 
 ### Task 7 - Test That Access Control Works
 
@@ -217,7 +217,7 @@ kubectl get rolebinding dev-user-binding -n dev -o yaml
 
 The YAML output confirmed the `dev-user-binding` RoleBinding correctly references `Role: pod-reader` as its `roleRef` and `ServiceAccount: dev-user` in namespace `dev` as its subject.
 
-![can-i results (yes/no/no) and RoleBinding YAML verification](<Screenshot_2026-07-29_193539.png>)
+![can-i results (yes/no/no) and RoleBinding YAML verification](Evidence-Lab1/Screenshot%202026-07-29%20193539.png)
 
 ## Short-Answer Questions
 
