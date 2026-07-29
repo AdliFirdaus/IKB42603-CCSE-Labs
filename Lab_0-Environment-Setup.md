@@ -67,7 +67,7 @@ docker run --rm hello-world
 
 Docker Engine reported version `28.5.2`. The `hello-world` container was then run with automatic removal enabled (`--rm`), and the container returned the standard **"Hello from Docker!"** confirmation message. This confirms that the Docker client, daemon, image pull, and container execution pipeline are all functioning correctly end-to-end.
 
-![Docker version and hello-world verification](<img width="669" height="452" alt="Screenshot 2026-07-29 192503" src="https://github.com/user-attachments/assets/d465ec3a-3d77-4c97-bbeb-88e548c4d032" />
+![Docker version and hello-world verification](Evidence/Screenshot%202026-07-29%20192503.png
 )
 
 ### Step 2 - Install and Verify AWS CLI v2
@@ -87,7 +87,7 @@ aws --version
 
 The system reported **AWS CLI version 2.36.9**, running on Python `3.14.6` under Kali Linux (`kali-amd64`). This confirms the CLI binary is correctly installed and resolvable on the system `PATH`.
 
-![AWS CLI version verification](<Screenshot 2026-07-29 192538.png>)
+![AWS CLI version verification](Evidence/Screenshot%202026-07-29%20192538.png)
 
 ### Step 3 - Install and Verify Kubernetes Tools (kind and kubectl)
 
@@ -110,7 +110,7 @@ kubectl version --client
 
 `kind` reported **version 0.23.0**. `kubectl` reported **client version v1.36.3** with **Kustomize version v5.8.1** bundled. Both tools are confirmed installed and callable from the terminal, ready to provision and manage the local cluster used in Lab 1 Session B.
 
-![kind and kubectl verification](<Screenshot 2026-07-29 192607.png>)
+![kind and kubectl verification](Evidence/Screenshot%202026-07-29%20192607.png)
 
 ### Step 4 - Verify OpenSSL and OATH Toolkit
 
@@ -129,7 +129,7 @@ oathtool --version
 
 **OpenSSL 3.6.3** and **OATH Toolkit 2.6.14** were both confirmed available, satisfying the prerequisite tooling for the cryptography- and authentication-focused labs later in the course.
 
-![OpenSSL and OATH Toolkit verification](<Screenshot 2026-07-29 192634.png>)
+![OpenSSL and OATH Toolkit verification](Evidence/Screenshot%202026-07-29%20192634.png)
 
 ### Step 5 - Start and Validate LocalStack
 
@@ -142,7 +142,7 @@ curl http://localhost:4566/_localstack/health
 
 Port `4566` exposes the main LocalStack gateway (the single endpoint used for all AWS service calls), while the `4510-4559` range exposes LocalStack's external service ports. The health endpoint returned a JSON response listing all available emulated AWS services and confirmed **LocalStack version 3.0.2** was running, indicating the simulator started successfully and is ready to accept AWS CLI requests.
 
-![LocalStack startup and health check](<Screenshot 2026-07-29 192718.png>)
+![LocalStack startup and health check](Evidence/Screenshot%202026-07-29%20192718.png)
 
 ### Step 6 - Confirm Running Containers
 
@@ -154,7 +154,7 @@ docker ps
 
 The output confirmed **two containers running concurrently**: the `kind` control-plane container (from Step 7) and the `localstack/localstack:3.0` container. LocalStack was reported as **healthy**, with port `4566` correctly published and mapped to the host, confirming the container is reachable from outside Docker's internal network.
 
-![Docker containers running](<Screenshot 2026-07-29 192742.png>)
+![Docker containers running](Evidence/Screenshot%202026-07-29%20192742.png)
 
 ### Step 7 - Create and Verify the kind Cluster
 
@@ -168,7 +168,7 @@ kubectl get nodes
 
 Cluster creation completed successfully, with `kind` reporting each provisioning stage (node image preparation, control-plane startup, CNI installation, and StorageClass installation) as successful. `kubectl cluster-info` confirmed the Kubernetes control plane and CoreDNS were both reachable at `127.0.0.1`, and `kubectl get nodes` confirmed the single node `ccse-lab1-control-plane` was in the **Ready** state, running Kubernetes `v1.30.0`.
 
-![kind cluster creation and node verification](<Screenshot 2026-07-29 192855.png>)
+![kind cluster creation and node verification](Evidence/Screenshot%202026-07-29%20192855.png)
 
 ### Step 8 - Configure AWS CLI for LocalStack
 
@@ -185,7 +185,7 @@ aws $EP sts get-caller-identity
 
 The `sts get-caller-identity` call returned the expected LocalStack test identity (`Account: 000000000000`, `Arn: arn:aws:iam::000000000000:root`), confirming that AWS CLI requests are correctly routed to and answered by LocalStack rather than real AWS infrastructure. This identity also serves as the baseline "root" identity referenced in Lab 1, before a dedicated least-privilege admin user is created.
 
-![AWS CLI configured against LocalStack](<Screenshot 2026-07-29 193013.png>)
+![AWS CLI configured against LocalStack](Evidence/Screenshot%202026-07-29%20193013.png)
 
 ## Pre-Lab Verification Checklist
 
