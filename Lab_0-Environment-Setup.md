@@ -67,7 +67,8 @@ docker run --rm hello-world
 
 Docker Engine reported version `28.5.2`. The `hello-world` container was then run with automatic removal enabled (`--rm`), and the container returned the standard **"Hello from Docker!"** confirmation message. This confirms that the Docker client, daemon, image pull, and container execution pipeline are all functioning correctly end-to-end.
 
-![Docker version and hello-world verification](<Screenshot 2026-07-29 192503.png>)
+![Docker version and hello-world verification](<img width="669" height="452" alt="Screenshot 2026-07-29 192503" src="https://github.com/user-attachments/assets/d465ec3a-3d77-4c97-bbeb-88e548c4d032" />
+)
 
 ### Step 2 - Install and Verify AWS CLI v2
 
