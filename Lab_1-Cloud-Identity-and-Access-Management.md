@@ -50,7 +50,7 @@ aws $EP sts get-caller-identity
 
 The response confirmed the session was operating as the **root** identity (`Account: 000000000000`, `Arn: arn:aws:iam::000000000000:root`), establishing the baseline before least-privilege identities were introduced.
 
-![Root identity via sts get-caller-identity](Evidence-Lab1/Screenshot%2026-07-29%203808.png)
+![Root identity via sts get-caller-identity](Evidence-Lab1/Screenshot%202026-07-29%20203808.png)
 
 ```bash
 # Create a group and attach the AdministratorAccess policy to the GROUP, not the user
@@ -70,7 +70,7 @@ aws $EP iam get-group --group-name Admins
 
 The `get-group` response confirmed **CloudAdmin_Adli** as a member of the **Admins** group, with the `AdministratorAccess` policy already attached at the group level. Attaching the policy to the group rather than the user means that any future admin identity can be granted the same permission set simply by joining the group, with no repeated policy attachment required.
 
-![CloudAdmin_Adli group membership confirmed via get-group](<INSERT-SCREENSHOT-get-group-Admins.png>)
+![CloudAdmin_Adli group membership confirmed via get-group](Evidence-Lab1/Screenshot%202026-07-29%20203724.png)
 
 ### Task 3 - Enforce Least Privilege with a Scoped Policy
 
@@ -90,7 +90,7 @@ aws $EP iam list-attached-user-policies --user-name Analyst_Adli
 
 The response confirmed that **Analyst_Adli** has exactly one policy attached - `AmazonS3ReadOnlyAccess` - and nothing broader. This is the practical basis for blast-radius reduction: if this identity's credentials were compromised, the attacker would only be able to read S3 objects. They could not modify, delete, or exfiltrate-and-destroy data, create new IAM identities, alter permissions, or access any other AWS service, unlike a compromise of the `CloudAdmin_Adli` or root identity, which would grant unrestricted control over the entire account.
 
-![Analyst_Adli read-only policy confirmed via list-attached-user-policies](<INSERT-SCREENSHOT-list-attached-user-policies.png>)
+![Analyst_Adli read-only policy confirmed via list-attached-user-policies](Evidence-Lab1/Screenshot%202026-07-29%20203536.png)
 
 ### Task 4 - Credential Hygiene & Access Key Rotation
 
@@ -103,7 +103,7 @@ aws $EP iam create-access-key --user-name Analyst_Adli
 
 The command returned a new **AccessKeyId** (`LKIAQAAAAAAADSFBHWHR`) with status `Active`.
 
-![Access key created for Analyst_Adli](<INSERT-SCREENSHOT-create-access-key.png>)
+![Access key created for Analyst_Adli](Evidence-Lab1/Screenshot%202026-07-29%20203018.png)
 
 ```bash
 # List access keys to confirm the key and its current status
