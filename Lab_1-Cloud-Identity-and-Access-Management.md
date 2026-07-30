@@ -101,7 +101,7 @@ Programmatic access to AWS relies on access keys rather than passwords. An acces
 aws $EP iam create-access-key --user-name Analyst_Adli
 ```
 
-The command returned a new **AccessKeyId** (`LKIAQAAAAAAADSFBHWHR`) with status `Active`.
+The command returned a new **AccessKeyId** ((redacted in this report; visible only in the raw LocalStack simulation output) with status `Active`.
 
 ![Access key created for Analyst_Adli](Evidence-Lab1/Screenshot%202026-07-29%20203018.png)
 
@@ -110,14 +110,14 @@ The command returned a new **AccessKeyId** (`LKIAQAAAAAAADSFBHWHR`) with status 
 aws $EP iam list-access-keys --user-name Analyst_Adli
 ```
 
-The listing confirmed the key `LKIAQAAAAAAADSFBHWHR` in `Active` status.
+The listing confirmed the key `AccessKeyId redacted` in `Active` status.
 
 ![Access key listed as Active](Evidence-Lab1/Screenshot%202026-07-29%20193659.png)
 
 ```bash
 # Rotate: deactivate the key rather than deleting it outright
 aws $EP iam update-access-key --user-name Analyst_Adli \
-  --access-key-id LKIAQAAAAAAADSFBHWHR --status Inactive
+  --access-key-id <ACCESS_KEY_ID> --status Inactive
 
 # Confirm the rotation took effect
 aws $EP iam list-access-keys --user-name Analyst_Adli
