@@ -101,7 +101,7 @@ Programmatic access to AWS relies on access keys rather than passwords. An acces
 aws $EP iam create-access-key --user-name Analyst_Adli
 ```
 
-The command returned a new **AccessKeyId** ((redacted in this report; visible only in the raw LocalStack simulation output) with status `Active`.
+The command returned a new **AccessKeyId** (redacted visible only in the raw LocalStack simulation output) with status `Active`.
 
 ![Access key created for Analyst_Adli](Evidence-Lab1/Screenshot%202026-07-29%20203018.png)
 
