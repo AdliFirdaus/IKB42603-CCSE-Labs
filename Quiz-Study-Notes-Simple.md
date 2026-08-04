@@ -4,7 +4,7 @@
 
 ---
 
-![Quiz Part 1](quiz-images/quiz-1.png)
+![Quiz Part 1](Quiz%20study/Screenshot%202026-08-04%20155819.png)
 
 - Smallest deployable unit in Kubernetes → **Pod** (not Node)
 - NOT a cloud characteristic → **Manual Provisioning**
@@ -12,7 +12,7 @@
 
 ---
 
-![Quiz Part 2](quiz-images/quiz-2.png)
+![Quiz Part 2](Quiz%20study/Screenshot%202026-08-04%20155832.png)
 
 - List Kubernetes nodes → **kubectl get nodes**
 - LocalStack purpose → **Simulates AWS services locally**
@@ -21,7 +21,7 @@
 
 ---
 
-![Quiz Part 3](quiz-images/quiz-3.png)
+![Quiz Part 3](Quiz%20study/Screenshot%202026-08-04%20155849.png)
 
 - Private + Public cloud combined → **Hybrid Cloud**
 - Policies should attach to → **IAM Groups**
@@ -30,7 +30,7 @@
 
 ---
 
-![Quiz Part 4](quiz-images/quiz-4.png)
+![Quiz Part 4](Quiz%20study/Screenshot%202026-08-04%20155909.png)
 
 - Verify current AWS identity → **aws sts get-caller-identity**
 - Unlimited privileges identity → **Root User**
@@ -39,7 +39,7 @@
 
 ---
 
-![Quiz Part 5](quiz-images/quiz-5.png)
+![Quiz Part 5](Quiz%20study/Screenshot%202026-08-04%20155922.png)
 
 - ARN stands for → **Amazon Resource Name**
 - Cloud computing refers to → *(quiz says "Buying more physical servers" - this looks wrong; real definition is "Delivering computing resources over the Internet")*
@@ -48,7 +48,7 @@
 
 ---
 
-![Quiz Part 6](quiz-images/quiz-6.png)
+![Quiz Part 6](Quiz%20study/Screenshot%202026-08-04%20155931.png)
 
 - Access keys mainly used for → **Programmatic access**
 - Most control deployment model → **Private Cloud**
@@ -56,7 +56,7 @@
 
 ---
 
-![Quiz Part 7](quiz-images/quiz-7.png)
+![Quiz Part 7](Quiz%20study/Screenshot%202026-08-04%20155940.png)
 
 - Google Docs example of → **SaaS**
 - Auto grow/shrink characteristic → **Rapid Elasticity**
@@ -65,7 +65,7 @@
 
 ---
 
-![Quiz Part 8](quiz-images/quiz-8.png)
+![Quiz Part 8](Quiz%20study/Screenshot%202026-08-04%20155952.png)
 
 - Service model with VMs → **IaaS**
 - Temporary IAM identity → **IAM Role**
