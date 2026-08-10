@@ -256,7 +256,7 @@ docker run --rm -v ccse-vol:/data alpine sh -c \
 
 This time, before deletion, the file's contents were explicitly overwritten with zero-bytes using `dd`, and only then deleted - this is the "shred before delete" pattern, which reduces the chance of the original sensitive content being recoverable from the underlying storage block, unlike a plain `rm`.
 
-*[SCREENSHOT PLACEHOLDER - secure wipe `dd` command output. Not available for this submission; command and expected output ("wiped") documented above from the executed command.]*
+![Secure wipe command output](Evidence-Lab2/Screenshot%202026-08-09%20223333.png)
 
 > **Cloud context note (per the lab manual):** In real cloud storage, customers typically do not control the physical storage blocks - they are abstracted, virtualised, and shared across many tenants by the provider. Because of this, directly overwriting physical media is often not possible or verifiable in the cloud. The practical, provider-agnostic answer to remanence in the cloud is therefore **cryptographic erasure**: encrypt data at rest, and "delete" it by destroying the encryption key, rendering the remaining ciphertext computationally infeasible to recover - covered in Lab 3.
 
@@ -267,7 +267,7 @@ kubectl get networkpolicy -A
 kubectl describe resourcequota tenant-a-quota -n tenant-a
 ```
 
-*[SCREENSHOT PLACEHOLDER - verification command output. Not available for this submission; `default-deny-ingress` in `tenant-b` was already confirmed active in Task 4 above, and the `tenant-a-quota` ResourceQuota was already confirmed active in Task 3 above.]*
+![Verification commands output](Evidence-Lab2/Screenshot%202026-08-09%20223406.png)
 
 ## Short-Answer Questions
 
