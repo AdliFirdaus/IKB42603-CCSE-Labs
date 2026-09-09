@@ -27,61 +27,6 @@ By the end of this lab, the following outcomes are demonstrated:
 5. A presigned URL issued and its risks assessed.
 6. Versioning, delete markers, object-level data remanence, and provable deletion via cryptographic erasure.
 
-## Environment Setup
-
-A LocalStack Pro container was started. The first attempt failed because the `LOCALSTACK_AUTH_TOKEN` environment variable was empty in the shell, so the container exited with a license activation error.
-
-```bash
-docker run -d --name localstack -p 4566:4566 \
-  -e LOCALSTACK_AUTH_TOKEN=$LOCALSTACK_AUTH_TOKEN \
-  -e ENFORCE_IAM=1 \
-  localstack/localstack-pro:latest
-```
-
-![Image pulled successfully but the CLI could not connect to port 4566](Evidence-Lab6/setup-01-docker-pull-license-error.png)
-
-```bash
-docker ps -a
-docker logs localstack
-```
-
-![docker ps shows the container Exited (55); docker logs confirms "License activation failed" due to no credentials found](Evidence-Lab6/setup-02-docker-ps-license-fail-logs.png)
-
-The container was restarted with the same (empty) variable to confirm the diagnosis before fixing it:
-
-![Retry with the same empty token still fails with the identical license error](Evidence-Lab6/setup-03-retry-still-fail.png)
-
-The auth token was exported into the shell, the old container removed, and a fresh container started:
-
-```bash
-export LOCALSTACK_AUTH_TOKEN='ls-********************************'
-docker rm -f localstack
-docker run -d --name localstack -p 4566:4566 \
-  -e LOCALSTACK_AUTH_TOKEN=$LOCALSTACK_AUTH_TOKEN \
-  -e ENFORCE_IAM=1 \
-  localstack/localstack-pro:latest
-sleep 5
-docker logs localstack
-```
-
-![Token exported and a fresh container started](Evidence-Lab6/setup-04-token-export-and-restart.png)
-
-![docker logs confirms "Successfully requested and activated new license" (freemium tier)](Evidence-Lab6/setup-05-license-activated.png)
-
-```bash
-export EP='--endpoint-url=http://localhost:4566'
-aws configure set aws_access_key_id  test
-aws configure set aws_secret_access_key test
-aws configure set region us-east-1
-
-aws $EP sts get-caller-identity
-```
-
-![get-caller-identity confirms account ████████████](Evidence-Lab6/setup-06-caller-identity.png)
-
-**Result:** LocalStack Pro running with `ENFORCE_IAM=1`, CLI pointed at it, dummy identity confirmed under account `████████████`.
-
-## Session A (Week 11) - Object Storage & the Exposure Problem
 
 ### Task 1 - Classify the Data Before You Store It
 
